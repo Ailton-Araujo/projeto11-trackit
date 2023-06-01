@@ -7,9 +7,11 @@ import { FooterStyled } from "./styled/FooterStyled";
 export default function Footer() {
   const habitDone = useHabitStatusContext();
   return (
-    <FooterStyled>
-      <Link to={"/habitos"}>Hábitos</Link>
-      <Link to={"/hoje"}>
+    <FooterStyled data-test="menu">
+      <Link data-test="habit-link" to={"/habitos"}>
+        Hábitos
+      </Link>
+      <Link data-test="today-link" to={"/hoje"}>
         <CircularProgressbar
           value={habitDone}
           text="Hoje"
@@ -26,7 +28,9 @@ export default function Footer() {
         />
       </Link>
 
-      <Link to={"/historico"}>Histórico</Link>
+      <Link data-test="history-link" to={"/historico"}>
+        Histórico
+      </Link>
     </FooterStyled>
   );
 }

@@ -22,7 +22,12 @@ export function useHabitStatusContextUpadate() {
 }
 
 export default function PageContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const userDataStringify = localStorage.getItem("UserData");
+  let UserData = {};
+  if (userDataStringify !== null) {
+    UserData = { ...JSON.parse(userDataStringify) };
+  }
+  const [user, setUser] = useState(UserData);
   const [habitStatus, setHabitStatus] = useState(0);
 
   return (

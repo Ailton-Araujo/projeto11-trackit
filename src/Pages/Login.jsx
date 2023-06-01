@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { LoginSignUpStyled } from "../components/styled/Login.SignUp.Styled";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
+import { LoginSignUpStyled } from "../components/styled/Login.SignUp.Styled";
+import { useUserDataContext } from "../components/ContextProvider";
 import { useUserDataContextUpdate } from "../components/ContextProvider";
 import { loginPost } from "../components/Axios";
 import Logo from "../components/Logo";
@@ -10,8 +11,15 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [tryLogin, setTryLogin] = useState(false);
+  const userData = useUserDataContext();
   const setUser = useUserDataContextUpdate();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Object.values(userData).length !== 0) {
+      navigate("/hoje");
+    }
+  }, []);
 
   function loginSend(e) {
     e.preventDefault();
@@ -23,6 +31,8 @@ export default function Login() {
 
     function loginSucess(user) {
       setUser(user);
+      const userStringify = JSON.stringify(user);
+      localStorage.setItem("UserData", userStringify);
       navigate("/hoje");
     }
 

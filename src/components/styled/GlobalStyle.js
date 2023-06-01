@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Lexend Deca", sans-serif;
     background: #ffffff;
+    #root{
+      position: relative;
+    }
   }
 `;
 

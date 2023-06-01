@@ -21,7 +21,13 @@ export const LoginSignUpStyled = styled.main`
       background: #ffffff;
       border: 1px solid #d5d5d5;
       border-radius: 5px;
+      padding-left: 11px;
+      font-family: "Lexend Deca", sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 25px;
       &::placeholder {
+        font-family: "Lexend Deca", sans-serif;
         padding-left: 11px;
         font-weight: 400;
         font-size: 20px;
