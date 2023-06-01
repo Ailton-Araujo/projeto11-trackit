@@ -1,24 +1,25 @@
 import { useState } from "react";
-import { LoginStyled } from "../components/styled/Login.Styled";
+import { LoginSignUpStyled } from "../components/styled/Login.SignUp.Styled";
 import { Link, useNavigate } from "react-router-dom";
-import { useLoginContextUpdate } from "../components/ContextProvider";
+import { ThreeDots } from "react-loader-spinner";
+import { useUserDataContextUpdate } from "../components/ContextProvider";
 import { loginPost } from "../components/Axios";
+import Logo from "../components/Logo";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const setUser = useLoginContextUpdate();
+  const [tryLogin, setTryLogin] = useState(false);
+  const setUser = useUserDataContextUpdate();
   const navigate = useNavigate();
 
   function loginSend(e) {
     e.preventDefault();
-
+    setTryLogin(true);
     const loginData = {
       email,
       password,
     };
-
-    console.log(setUser);
 
     function loginSucess(user) {
       setUser(user);
@@ -26,21 +27,18 @@ export default function Login() {
     }
 
     function loginFailure() {
-      console.log("erro");
+      setTryLogin(false);
     }
 
     loginPost(loginData, loginSucess, loginFailure);
-    console.log(loginData);
   }
 
   return (
-    <LoginStyled>
-      <div>
-        <img />
-        <p>TrackIt</p>
-      </div>
+    <LoginSignUpStyled>
+      <Logo />
       <form onSubmit={loginSend}>
         <input
+          disabled={tryLogin}
           data-test="email-input"
           type="email"
           id="email"
@@ -50,6 +48,7 @@ export default function Login() {
           required
         />
         <input
+          disabled={tryLogin}
           data-test="password-input"
           type="password"
           id="password"
@@ -58,13 +57,27 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button data-test="login-btn" type="subimit">
-          Entrar
+        <button disabled={tryLogin} data-test="login-btn" type="subimit">
+          {tryLogin ? (
+            <ThreeDots
+              height="15"
+              width="60"
+              radius="11"
+              color=" #FFFFFF"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            "Entrar"
+          )}
         </button>
       </form>
+
       <Link data-test="signup-link" to={"/cadastro"}>
         Não tem uma conta? Cadastre-se!
       </Link>
-    </LoginStyled>
+    </LoginSignUpStyled>
   );
 }

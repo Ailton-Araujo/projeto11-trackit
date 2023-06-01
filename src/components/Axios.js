@@ -13,7 +13,7 @@ export function loginPost(obj, callBackSucess, callBackError) {
     });
 }
 
-export function singIn(obj, callBackSucess, callBackError) {
+export function signUp(obj, callBackSucess, callBackError) {
   axios
     .post(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",

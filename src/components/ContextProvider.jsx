@@ -1,24 +1,39 @@
 import { createContext, useContext, useState } from "react";
 
-const LoginContext = createContext();
-const LoginContextUpdate = createContext();
+const UserDataContext = createContext();
+const UserDataContextUpdate = createContext();
+const HabitStatusContext = createContext();
+const HabitStatusContextUpadate = createContext();
 
-export function useLoginContext() {
-  return useContext(LoginContext);
+export function useUserDataContext() {
+  return useContext(UserDataContext);
 }
 
-export function useLoginContextUpdate() {
-  return useContext(LoginContextUpdate);
+export function useUserDataContextUpdate() {
+  return useContext(UserDataContextUpdate);
+}
+
+export function useHabitStatusContext() {
+  return useContext(HabitStatusContext);
+}
+
+export function useHabitStatusContextUpadate() {
+  return useContext(HabitStatusContextUpadate);
 }
 
 export default function PageContextProvider({ children }) {
   const [user, setUser] = useState({});
+  const [habitStatus, setHabitStatus] = useState(0);
 
   return (
-    <LoginContext.Provider value={user}>
-      <LoginContextUpdate.Provider value={setUser}>
-        {children}
-      </LoginContextUpdate.Provider>
-    </LoginContext.Provider>
+    <UserDataContext.Provider value={user}>
+      <UserDataContextUpdate.Provider value={setUser}>
+        <HabitStatusContext.Provider value={habitStatus}>
+          <HabitStatusContextUpadate.Provider value={setHabitStatus}>
+            {children}
+          </HabitStatusContextUpadate.Provider>
+        </HabitStatusContext.Provider>
+      </UserDataContextUpdate.Provider>
+    </UserDataContext.Provider>
   );
 }

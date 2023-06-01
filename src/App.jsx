@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-import GlobalStyled from "./components/styled/GlobalStyled";
+import GlobalStyle from "./components/styled/GlobalStyle";
 import PageContextProvider from "./components/ContextProvider";
 import Login from "./Pages/Login";
 import Cadastro from "./Pages/Cadastro";
@@ -14,7 +14,7 @@ function App() {
   const { pathname } = useLocation();
   return (
     <PageContextProvider>
-      <GlobalStyled />
+      <GlobalStyle />
       {pathname !== "/" && pathname !== "/cadastro" && <Header />}
       <Routes>
         <Route path="/" element={<Login />} />

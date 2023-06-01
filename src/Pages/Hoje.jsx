@@ -1,7 +1,12 @@
-import { useLoginContext } from "../components/ContextProvider";
+import { useUserDataContext } from "../components/ContextProvider";
+import { HojeStyled } from "../components/styled/HojeStyled";
 
 export default function Hoje() {
-  const user = useLoginContext();
+  const user = useUserDataContext();
   console.log(user);
-  return "oi";
+  return (
+    <HojeStyled>
+      <div>"oi"</div>
+    </HojeStyled>
+  );
 }

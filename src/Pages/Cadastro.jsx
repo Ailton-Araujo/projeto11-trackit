@@ -1,43 +1,45 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SingInStyled } from "../components/styled/SingInStyled";
-import { singIn } from "../components/Axios";
+import { ThreeDots } from "react-loader-spinner";
+import { LoginSignUpStyled } from "../components/styled/Login.SignUp.Styled";
+import { signUp } from "../components/Axios";
+import Logo from "../components/Logo";
 
 export default function Cadastro() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [trySignUp, setTrySignUp] = useState(false);
   const [name, setName] = useState();
   const [image, setImage] = useState();
   const navigate = useNavigate();
 
-  function singInSend(e) {
+  function signUpSend(e) {
     e.preventDefault();
-
-    const singInData = {
+    setTrySignUp(true);
+    const signUpData = {
       email,
       name,
       image,
       password,
     };
 
-    function singInSucess() {
+    function signUpSucess() {
       navigate("/");
     }
 
-    function singInFailure() {
-      console.log("erro");
+    function signUpFailure() {
+      setTrySignUp(false);
     }
-    singIn(singInData, singInSucess, singInFailure);
+
+    signUp(signUpData, signUpSucess, signUpFailure);
   }
 
   return (
-    <SingInStyled>
-      <div>
-        <img />
-        <p>TrackIt</p>
-      </div>
-      <form onSubmit={singInSend}>
+    <LoginSignUpStyled>
+      <Logo />
+      <form onSubmit={signUpSend}>
         <input
+          disabled={trySignUp}
           data-test="email-input"
           type="email"
           id="email"
@@ -47,6 +49,7 @@ export default function Cadastro() {
           required
         />
         <input
+          disabled={trySignUp}
           data-test="password-input"
           type="password"
           id="password"
@@ -56,6 +59,7 @@ export default function Cadastro() {
           required
         />
         <input
+          disabled={trySignUp}
           data-test="user-name-input"
           type="text"
           id="name"
@@ -65,6 +69,7 @@ export default function Cadastro() {
           required
         />
         <input
+          disabled={trySignUp}
           data-test="user-image-input"
           type="url"
           id="imgUser"
@@ -73,13 +78,26 @@ export default function Cadastro() {
           onChange={(e) => setImage(e.target.value)}
           required
         />
-        <button data-test="signup-btn" type="subimit">
-          Entrar
+        <button disabled={trySignUp} data-test="signup-btn" type="subimit">
+          {trySignUp ? (
+            <ThreeDots
+              height="15"
+              width="60"
+              radius="11"
+              color=" #FFFFFF"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            "Cadastrar"
+          )}
         </button>
       </form>
       <Link data-test="login-link" to={"/"}>
-        Não tem uma conta? Cadastre-se!
+        Já tem uma conta? Faça login!
       </Link>
-    </SingInStyled>
+    </LoginSignUpStyled>
   );
 }
