@@ -10,7 +10,6 @@ export default function CreateHabit({
   setCreateHabit,
   newHabit,
   setNewHabit,
-  sendHabit,
   setListHabits,
   weekdays,
 }) {
