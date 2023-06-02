@@ -21,8 +21,8 @@ export default function Habits({
   }
 
   return (
-    <HabitStyled>
-      <p>{name}</p>
+    <HabitStyled data-test="habit-create-container">
+      <p data-test="habit-name">{name}</p>
       {weekdays.map((day, index) => (
         <WeekDaysButtons
           key={index}

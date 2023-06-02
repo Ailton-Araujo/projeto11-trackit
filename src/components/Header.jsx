@@ -13,7 +13,7 @@ export default function Header() {
     <HeaderStyled data-test="header">
       <p>TrackIt</p>
       <img data-test="avatar" src={image} alt={name} />
-      <button
+      {/* <button
         onClick={() => {
           localStorage.removeItem("UserData");
           setUser({});
@@ -21,7 +21,7 @@ export default function Header() {
         }}
       >
         tste
-      </button>
+      </button> */}
     </HeaderStyled>
   );
 }
