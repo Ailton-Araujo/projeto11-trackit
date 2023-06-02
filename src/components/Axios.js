@@ -1,5 +1,13 @@
 import axios from "axios";
 
+function tokenProvider(token) {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+}
+
 export function loginPost(obj, callBackSucess, callBackError) {
   axios
     .post(
@@ -8,6 +16,7 @@ export function loginPost(obj, callBackSucess, callBackError) {
     )
     .then((res) => callBackSucess(res.data))
     .catch((error) => {
+      console.log(error);
       alert(error.response.data.message);
       callBackError();
     });
@@ -21,7 +30,62 @@ export function signUp(obj, callBackSucess, callBackError) {
     )
     .then(() => callBackSucess())
     .catch((error) => {
+      console.log(error);
       alert(error.response.data.message);
       callBackError();
+    });
+}
+
+export function getTodayHabits(token, callBackSucess) {
+  axios
+    .get(
+      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
+      tokenProvider(token)
+    )
+    .then((res) => callBackSucess([...res.data]))
+    .catch((error) => {
+      console.log(error);
+      alert(error.response.data.message);
+    });
+}
+
+export function getHabits(token, callBackSucess) {
+  axios
+    .get(
+      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
+      tokenProvider(token)
+    )
+    .then((res) => callBackSucess([...res.data]))
+    .catch((error) => {
+      console.log(error);
+      alert(error.response.data.message);
+    });
+}
+
+export function postHabit(obj, token, callBackSucess, callBackError) {
+  axios
+    .post(
+      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
+      obj,
+      tokenProvider(token)
+    )
+    .then((res) => callBackSucess(res.data))
+    .catch((error) => {
+      console.log(error);
+      alert(error.response.data.message);
+      callBackError((prevState) => !prevState);
+    });
+}
+
+export function deleteHabit(idHabit, token, callBackSucess) {
+  axios
+    .delete(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${idHabit}`,
+      tokenProvider(token)
+    )
+    .then(() => callBackSucess())
+    .catch((error) => {
+      console.log(error);
+      alert(error.response.data.message);
     });
 }

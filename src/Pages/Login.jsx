@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import { LoginSignUpStyled } from "../components/styled/Login.SignUp.Styled";
 import { useUserDataContext } from "../components/ContextProvider";
-import { useUserDataContextUpdate } from "../components/ContextProvider";
 import { loginPost } from "../components/Axios";
 import Logo from "../components/Logo";
 
@@ -11,12 +10,12 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [tryLogin, setTryLogin] = useState(false);
-  const userData = useUserDataContext();
-  const setUser = useUserDataContextUpdate();
+  const { user, setUser } = useUserDataContext();
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (Object.values(userData).length !== 0) {
+    if (Object.values(user).length !== 0) {
       navigate("/hoje");
     }
   }, []);

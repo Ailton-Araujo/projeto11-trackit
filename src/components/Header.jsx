@@ -1,15 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { useUserDataContext } from "../components/ContextProvider";
-import { useUserDataContextUpdate } from "../components/ContextProvider";
 import { HeaderStyled } from "./styled/HeaderStyled";
+
 export default function Header() {
-  const user = useUserDataContext();
-  const setUser = useUserDataContextUpdate();
+  const {
+    user: { image, name },
+    setUser,
+  } = useUserDataContext();
+
   const navigate = useNavigate();
   return (
     <HeaderStyled data-test="header">
       <p>TrackIt</p>
-      <img src={user.image} alt={user.name} />
+      <img data-test="avatar" src={image} alt={name} />
       <button
         onClick={() => {
           localStorage.removeItem("UserData");
