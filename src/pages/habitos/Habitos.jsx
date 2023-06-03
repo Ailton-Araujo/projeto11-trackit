@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-useNavigate;
-import { HabitosStyled } from "../components/styled/HabitosStyled";
-import { getHabits } from "../components/Axios";
+import { useNavigate } from "react-router-dom";
+import { HabitosStyled } from "../../components/styled/HabitosStyled";
+import { getHabits } from "../../components/Axios";
 import {
   useTotalNumberHabits,
   useUserDataContext,
-} from "../components/ContextProvider";
-import CreateHabit from "../components/CreateHabit";
-import Habits from "../components/Habits";
-import { useNavigate } from "react-router-dom";
+} from "../../components/ContextProvider";
+import CreateHabit from "./CreateHabit";
+import Habits from "./Habits";
 
 export default function Habitos() {
   const {

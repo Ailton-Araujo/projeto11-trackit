@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import { LoginSignUpStyled } from "../components/styled/Login.SignUp.Styled";
-import { useUserDataContext } from "../components/ContextProvider";
-import { loginPost } from "../components/Axios";
-import Logo from "../components/Logo";
+import { LoginSignUpStyled } from "../../components/styled/Login.SignUp.Styled";
+import { useUserDataContext } from "../../components/ContextProvider";
+import { loginPost } from "../../components/Axios";
+import Logo from "../../components/Logo";
 
 export default function Login() {
   const [email, setEmail] = useState("");

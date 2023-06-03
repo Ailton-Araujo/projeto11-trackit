@@ -5,10 +5,10 @@ import {
   useHabitStatusContext,
   useUserDataContext,
   useTotalNumberHabits,
-} from "../components/ContextProvider";
-import { HojeStyled } from "../components/styled/HojeStyled";
-import { getTodayHabits } from "../components/Axios";
-import TodayHabit from "../components/TodayHabit";
+} from "../../components/ContextProvider";
+import { HojeStyled } from "../../components/styled/HojeStyled";
+import { getTodayHabits } from "../../components/Axios";
+import TodayHabit from "./TodayHabit";
 
 export default function Hoje() {
   const {

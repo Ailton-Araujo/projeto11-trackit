@@ -1,12 +1,12 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import GlobalStyle from "./components/styled/GlobalStyle";
 import PageContextProvider from "./components/ContextProvider";
-import Login from "./Pages/Login";
-import Cadastro from "./Pages/Cadastro";
+import Login from "./pages/Login/Login";
+import Cadastro from "./Pages/Cadastro/Cadastro";
 import Header from "./components/Header";
-import Hoje from "./Pages/Hoje";
-import Habitos from "./Pages/Habitos";
-import Historico from "./Pages/Historico";
+import Hoje from "./Pages/hoje/Hoje";
+import Habitos from "./Pages/habitos/Habitos";
+import Historico from "./Pages/historico/Historico";
 import Footer from "./components/Footer";
 
 function App() {

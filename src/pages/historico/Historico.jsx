@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useUserDataContext } from "../components/ContextProvider";
-import { getHistoryHabits } from "../components/Axios";
+import { useUserDataContext } from "../../components/ContextProvider";
+import { getHistoryHabits } from "../../components/Axios";
 
 export default function Historico() {
   const {

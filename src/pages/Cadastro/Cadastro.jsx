@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import { LoginSignUpStyled } from "../components/styled/Login.SignUp.Styled";
-import { signUp } from "../components/Axios";
-import Logo from "../components/Logo";
+import { LoginSignUpStyled } from "../../components/styled/Login.SignUp.Styled";
+import { signUp } from "../../components/Axios";
+import Logo from "../../components/Logo";
 
 export default function Cadastro() {
   const [email, setEmail] = useState("");

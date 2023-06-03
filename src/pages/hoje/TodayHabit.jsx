@@ -1,8 +1,8 @@
-import check from "../assets/check.svg";
-import { TodayStyled } from "./styled/TodayStyled";
-import { useHabitStatusContext } from "./ContextProvider";
-import { statusTodayHabit } from "./Axios";
 import { useEffect, useState } from "react";
+import check from "../../assets/check.svg";
+import { TodayStyled } from "../../components/styled/TodayStyled";
+import { useHabitStatusContext } from "../../components/ContextProvider";
+import { statusTodayHabit } from "../../components/Axios";
 
 export default function TodayHabit({ habit, totalDone, setTotalDone, token }) {
   const { setHabitDone } = useHabitStatusContext();

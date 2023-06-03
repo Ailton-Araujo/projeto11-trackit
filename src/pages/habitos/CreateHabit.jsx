@@ -2,9 +2,9 @@ import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import styled, { css } from "styled-components";
 import dayjs from "dayjs";
-import WeekDaysButtons from "../components/WeekDaysButtons";
-import { CreateHabitStyled } from "./styled/CreateHabitStyled";
-import { postHabit } from "../components/Axios";
+import WeekDaysButtons from "../../components/WeekDaysButtons";
+import { CreateHabitStyled } from "../../components/styled/CreateHabitStyled";
+import { postHabit } from "../../components/Axios";
 
 export default function CreateHabit({
   token,
