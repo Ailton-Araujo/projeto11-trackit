@@ -9,8 +9,8 @@ export default function Cadastro() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [trySignUp, setTrySignUp] = useState(false);
-  const [name, setName] = useState();
-  const [image, setImage] = useState();
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
 
   function signUpSend(e) {
