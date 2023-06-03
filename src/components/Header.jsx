@@ -20,9 +20,8 @@ export default function Header() {
           navigate("/");
         }}
       >
-        tste
+        Logout
       </button>
-
       <img data-test="avatar" src={image} alt={name} />
     </HeaderStyled>
   );

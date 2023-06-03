@@ -24,4 +24,19 @@ export const HeaderStyled = styled.header`
     height: 51px;
     border-radius: 100px;
   }
+
+  button {
+    width: 60px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: #d5d5d5;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #666666;
+    position: absolute;
+    top: 65px;
+    right: 16px;
+  }
 `;
