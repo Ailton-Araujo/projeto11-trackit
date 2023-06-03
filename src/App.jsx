@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import GlobalStyle from "./components/styled/GlobalStyle";
 import PageContextProvider from "./components/ContextProvider";
-import Login from "./pages/login-signup/Login";
-import Cadastro from "./pages/login-signup/Cadastro";
+import Login from "./pages/login/Login";
+import Cadastro from "./pages/signup/Cadastro";
 import Header from "./components/Header";
 import Hoje from "./pages/today/Hoje";
 import Habitos from "./pages/habits/Habitos";
