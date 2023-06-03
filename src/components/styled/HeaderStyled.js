@@ -38,5 +38,11 @@ export const HeaderStyled = styled.header`
     position: absolute;
     top: 65px;
     right: 16px;
+    scale: 0;
+    transition: all 0.2s ease-in-out;
+
+    ${({ logoutStatus }) => {
+      return logoutStatus && `scale:1;transform: scale`;
+    }}
   }
 `;
