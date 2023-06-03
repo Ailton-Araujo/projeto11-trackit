@@ -14,11 +14,11 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (Object.values(user).length !== 0) {
-      navigate("/hoje");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (Object.values(user).length !== 0) {
+  //     navigate("/hoje");
+  //   }
+  // }, []);
 
   function loginSend(e) {
     e.preventDefault();

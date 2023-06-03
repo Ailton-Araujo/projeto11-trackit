@@ -1,6 +1,7 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import GlobalStyle from "./components/styled/GlobalStyle";
-import PageContextProvider from "./components/ContextProvider";
+import { useUserDataContext } from "./components/ContextProvider";
 import Login from "./pages/login/Login";
 import Cadastro from "./pages/signup/Cadastro";
 import Header from "./components/Header";
@@ -11,9 +12,17 @@ import Footer from "./components/Footer";
 
 function App() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { user } = useUserDataContext();
+
+  useEffect(() => {
+    if (Object.values(user).length !== 0) {
+      navigate("/hoje");
+    }
+  }, []);
 
   return (
-    <PageContextProvider>
+    <>
       <GlobalStyle />
       {pathname !== "/" && pathname !== "/cadastro" && <Header />}
       <Routes>
@@ -24,7 +33,7 @@ function App() {
         <Route path="/historico" element={<Historico />} />
       </Routes>
       {pathname !== "/" && pathname !== "/cadastro" && <Footer />}
-    </PageContextProvider>
+    </>
   );
 }
 
