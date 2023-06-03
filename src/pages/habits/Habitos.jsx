@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
 import { HabitosStyled } from "../../components/styled/HabitosStyled";
 import { getHabits } from "../../components/Axios";
 import {
@@ -8,26 +7,19 @@ import {
   useUserDataContext,
 } from "../../components/ContextProvider";
 import CreateHabit from "./CreateHabit";
-import Habits from "./Habits";
+import Habit from "./Habit";
 
 export default function Habitos() {
   const {
     user: { token },
   } = useUserDataContext();
-  const { numberOfHabits, setNumberOfHabits } = useTotalNumberHabits();
+  const { setNumberOfHabits } = useTotalNumberHabits();
   const [createHabit, setCreateHabit] = useState(false);
   const [newHabit, setNewHabit] = useState({ name: "", days: [] });
   const [listHabits, setListHabits] = useState([]);
   const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
-  const navigate = useNavigate();
-
-  const entries = window.performance.getEntriesByType("navigation");
 
   useEffect(() => {
-    console.log(entries);
-    // if (entries[0].type === "reload") {
-    //   navigate("/");
-    // }
     function sucessGetHabits(data) {
       setListHabits(data);
       setNumberOfHabits(
@@ -36,7 +28,7 @@ export default function Habitos() {
     }
     getHabits(token, sucessGetHabits);
   }, []);
-  console.log(numberOfHabits);
+
   return (
     <HabitosStyled>
       <section>
@@ -68,7 +60,7 @@ export default function Habitos() {
       )}
       {listHabits !== 0 &&
         listHabits.map((habit) => (
-          <Habits
+          <Habit
             key={habit.id}
             id={habit.id}
             token={token}

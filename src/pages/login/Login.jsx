@@ -10,15 +10,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [tryLogin, setTryLogin] = useState(false);
-  const { user, setUser } = useUserDataContext();
-
+  const { setUser } = useUserDataContext();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (Object.values(user).length !== 0) {
-  //     navigate("/hoje");
-  //   }
-  // }, []);
 
   function loginSend(e) {
     e.preventDefault();

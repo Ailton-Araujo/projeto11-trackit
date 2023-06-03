@@ -1,10 +1,9 @@
-import dayjs from "dayjs";
 import { HabitStyled } from "../../components/styled/HabitStyled";
 import { deleteHabit } from "../../components/Axios";
 import WeekDaysButtons from "../../components/WeekDaysButtons";
 import dump from "../../assets/dump.svg";
 
-export default function Habits({
+export default function Habit({
   id,
   token,
   name,
