@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import styled, { css } from "styled-components";
+import dayjs from "dayjs";
 import WeekDaysButtons from "../components/WeekDaysButtons";
 import { CreateHabitStyled } from "./styled/CreateHabitStyled";
 import { postHabit } from "../components/Axios";
@@ -11,6 +12,7 @@ export default function CreateHabit({
   newHabit,
   setNewHabit,
   setListHabits,
+  setNumberOfHabits,
   weekdays,
 }) {
   const [tryCreateHabit, setTryCreateHabit] = useState(false);
@@ -20,7 +22,13 @@ export default function CreateHabit({
 
     function sucessPost(data) {
       setListHabits((prevState) => [...prevState, data]);
+      setNumberOfHabits((prevState) =>
+        data.days.includes(dayjs().day())
+          ? [...prevState, data]
+          : [...prevState]
+      );
       setCreateHabit(false);
+      setNewHabit({ name: "", days: [] });
     }
 
     if (newHabit.days.length === 0) {

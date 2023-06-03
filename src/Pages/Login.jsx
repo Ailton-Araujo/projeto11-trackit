@@ -28,9 +28,15 @@ export default function Login() {
       password,
     };
 
-    function loginSucess(user) {
-      setUser(user);
-      const userStringify = JSON.stringify(user);
+    function loginSucess({ id, name, image, token }) {
+      setUser((prevState) => ({
+        ...prevState,
+        id,
+        name,
+        image,
+        token,
+      }));
+      const userStringify = JSON.stringify({ id, name, image, token });
       localStorage.setItem("UserData", userStringify);
       navigate("/hoje");
     }
@@ -41,7 +47,6 @@ export default function Login() {
 
     loginPost(loginData, loginSucess, loginFailure);
   }
-
   return (
     <LoginSignUpStyled>
       <Logo />

@@ -14,7 +14,7 @@ export function loginPost(obj, callBackSucess, callBackError) {
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
       obj
     )
-    .then((res) => callBackSucess(res.data))
+    .then(({ data }) => callBackSucess(data))
     .catch((error) => {
       console.log(error);
       alert(error.response.data.message);
@@ -42,7 +42,9 @@ export function getTodayHabits(token, callBackSucess) {
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
       tokenProvider(token)
     )
-    .then((res) => callBackSucess([...res.data]))
+    .then((res) => {
+      callBackSucess([...res.data]);
+    })
     .catch((error) => {
       console.log(error);
       alert(error.response.data.message);
@@ -84,6 +86,38 @@ export function deleteHabit(idHabit, token, callBackSucess) {
       tokenProvider(token)
     )
     .then(() => callBackSucess())
+    .catch((error) => {
+      console.log(error);
+      alert(error.response.data.message);
+    });
+}
+
+export function statusTodayHabit(idHabit, status, token, callBackSucess) {
+  axios
+    .post(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${idHabit}/${
+        status === false ? "check" : "uncheck"
+      }`,
+      "null",
+      tokenProvider(token)
+    )
+    .then((res) => {
+      console.log(res);
+      callBackSucess();
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error.response.data.message);
+    });
+}
+
+export function getHistoryHabits(token, callBackSucess) {
+  axios
+    .get(
+      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily",
+      tokenProvider(token)
+    )
+    .then((res) => callBackSucess(res.data))
     .catch((error) => {
       console.log(error);
       alert(error.response.data.message);

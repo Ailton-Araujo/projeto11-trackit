@@ -24,14 +24,8 @@ export const HojeStyled = styled.main`
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    color: #bababa;
+    color: ${({ textcolor }) => (textcolor ? "#8FC549" : "#bababa")};
     text-align: start;
     padding-bottom: 30px;
-  }
-
-  div {
-    height: 300px;
-    background: orange;
-    border: 5px solid red;
   }
 `;

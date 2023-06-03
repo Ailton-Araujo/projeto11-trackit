@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { HabitStyled } from "./styled/HabitStyled";
 import { deleteHabit } from "./Axios";
 import WeekDaysButtons from "./WeekDaysButtons";
@@ -10,11 +11,15 @@ export default function Habits({
   weekdays,
   daysList,
   setListHabits,
+  setNumberOfHabits,
 }) {
   function tryDeleteHabit() {
     function sucessDelete() {
       setListHabits((prevState) => [
         ...prevState.filter((habit) => habit.id !== id),
+      ]);
+      setNumberOfHabits((prevState) => [
+        ...prevState.filter((habit) => habit.id !== id && habit.days.includes),
       ]);
     }
     deleteHabit(id, token, sucessDelete);
