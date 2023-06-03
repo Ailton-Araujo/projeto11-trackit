@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-
 import GlobalStyle from "./components/styled/GlobalStyle";
 import PageContextProvider from "./components/ContextProvider";
 import Login from "./Pages/Login";
@@ -12,6 +11,7 @@ import Footer from "./components/Footer";
 
 function App() {
   const { pathname } = useLocation();
+
   return (
     <PageContextProvider>
       <GlobalStyle />

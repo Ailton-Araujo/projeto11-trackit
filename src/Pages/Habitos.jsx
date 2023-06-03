@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+useNavigate;
 import { HabitosStyled } from "../components/styled/HabitosStyled";
 import { getHabits } from "../components/Axios";
 import {
@@ -8,6 +9,7 @@ import {
 } from "../components/ContextProvider";
 import CreateHabit from "../components/CreateHabit";
 import Habits from "../components/Habits";
+import { useNavigate } from "react-router-dom";
 
 export default function Habitos() {
   const {
@@ -18,8 +20,15 @@ export default function Habitos() {
   const [newHabit, setNewHabit] = useState({ name: "", days: [] });
   const [listHabits, setListHabits] = useState([]);
   const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
+  const navigate = useNavigate();
+
+  const entries = window.performance.getEntriesByType("navigation");
 
   useEffect(() => {
+    console.log(entries);
+    // if (entries[0].type === "reload") {
+    //   navigate("/");
+    // }
     function sucessGetHabits(data) {
       setListHabits(data);
       setNumberOfHabits(
