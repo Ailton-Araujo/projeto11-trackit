@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FallingLines } from "react-loader-spinner";
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import {
@@ -28,6 +29,7 @@ export default function Hoje() {
     }
     getTodayHabits(token, sucessGetHabits);
   }, []);
+
   return (
     <HojeStyled textcolor={totalDone !== 0}>
       <h1 data-test="today">{now}</h1>
@@ -40,17 +42,27 @@ export default function Hoje() {
             )}% dos hábitos concluídos`
           : "Nenhum hábito concluído ainda"}
       </h2>
-      <ul>
-        {userHabits.map((habit) => (
-          <TodayHabit
-            key={habit.id}
-            habit={habit}
-            totalDone={totalDone}
-            setTotalDone={setTotalDone}
-            token={token}
-          />
-        ))}
-      </ul>
+
+      {userHabits.length === 0 ? (
+        <FallingLines
+          color="#126ba5"
+          width="100"
+          visible={true}
+          ariaLabel="falling-lines-loading"
+        />
+      ) : (
+        <ul>
+          {userHabits.map((habit) => (
+            <TodayHabit
+              key={habit.id}
+              habit={habit}
+              totalDone={totalDone}
+              setTotalDone={setTotalDone}
+              token={token}
+            />
+          ))}
+        </ul>
+      )}
     </HojeStyled>
   );
 }

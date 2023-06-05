@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FallingLines } from "react-loader-spinner";
 import dayjs from "dayjs";
 import { HabitosStyled } from "../../components/styled/HabitosStyled";
 import { getHabits } from "../../components/Axios";
@@ -58,7 +59,15 @@ export default function Habitos() {
           começar a trackear!
         </p>
       )}
-      {listHabits !== 0 &&
+
+      {listHabits.length === 0 ? (
+        <FallingLines
+          color="#126ba5"
+          width="100"
+          visible={true}
+          ariaLabel="falling-lines-loading"
+        />
+      ) : (
         listHabits.map((habit) => (
           <Habit
             key={habit.id}
@@ -70,7 +79,8 @@ export default function Habitos() {
             setListHabits={setListHabits}
             setNumberOfHabits={setNumberOfHabits}
           />
-        ))}
+        ))
+      )}
     </HabitosStyled>
   );
 }

@@ -13,15 +13,19 @@ export default function Habit({
   setNumberOfHabits,
 }) {
   function tryDeleteHabit() {
-    function sucessDelete() {
-      setListHabits((prevState) => [
-        ...prevState.filter((habit) => habit.id !== id),
-      ]);
-      setNumberOfHabits((prevState) => [
-        ...prevState.filter((habit) => habit.id !== id && habit.days.includes),
-      ]);
+    if (confirm("Você realmente deseja deletar esse habito") === true) {
+      function sucessDelete() {
+        setListHabits((prevState) => [
+          ...prevState.filter((habit) => habit.id !== id),
+        ]);
+        setNumberOfHabits((prevState) => [
+          ...prevState.filter(
+            (habit) => habit.id !== id && habit.days.includes
+          ),
+        ]);
+      }
+      deleteHabit(id, token, sucessDelete);
     }
-    deleteHabit(id, token, sucessDelete);
   }
 
   return (

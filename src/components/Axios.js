@@ -42,8 +42,8 @@ export function getTodayHabits(token, callBackSucess) {
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
       tokenProvider(token)
     )
-    .then((res) => {
-      callBackSucess([...res.data]);
+    .then(({ data }) => {
+      callBackSucess(data);
     })
     .catch((error) => {
       console.log(error);
@@ -57,7 +57,7 @@ export function getHabits(token, callBackSucess) {
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
       tokenProvider(token)
     )
-    .then((res) => callBackSucess([...res.data]))
+    .then(({ data }) => callBackSucess(data))
     .catch((error) => {
       console.log(error);
       alert(error.response.data.message);
@@ -71,7 +71,7 @@ export function postHabit(obj, token, callBackSucess, callBackError) {
       obj,
       tokenProvider(token)
     )
-    .then((res) => callBackSucess(res.data))
+    .then(({ data }) => callBackSucess(data))
     .catch((error) => {
       console.log(error);
       alert(error.response.data.message);
@@ -101,8 +101,7 @@ export function statusTodayHabit(idHabit, status, token, callBackSucess) {
       "null",
       tokenProvider(token)
     )
-    .then((res) => {
-      console.log(res);
+    .then(() => {
       callBackSucess();
     })
     .catch((error) => {
@@ -117,7 +116,7 @@ export function getHistoryHabits(token, callBackSucess) {
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily",
       tokenProvider(token)
     )
-    .then((res) => callBackSucess(res.data))
+    .then(({ data }) => callBackSucess(data))
     .catch((error) => {
       console.log(error);
       alert(error.response.data.message);
