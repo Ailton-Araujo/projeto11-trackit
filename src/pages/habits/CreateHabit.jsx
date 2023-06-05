@@ -31,7 +31,9 @@ export default function CreateHabit({
       setNewHabit({ name: "", days: [] });
     }
 
-    if (newHabit.days.length === 0) {
+    if (newHabit.name.length === 0) {
+      alert("O nome do hábito não pode ficar em branco.");
+    } else if (newHabit.days.length === 0) {
       alert("Selecione pelo menos um dia para o seu Hábito.");
     } else {
       setTryCreateHabit((prevState) => !prevState);
@@ -67,7 +69,6 @@ export default function CreateHabit({
             name: e.target.value,
           }))
         }
-        required
       />
       <span>
         {weekdays.map((day, index) => (

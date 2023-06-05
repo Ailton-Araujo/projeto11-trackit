@@ -79,7 +79,6 @@ export const HistoryStyled = styled.main`
 
     .react-calendar__month-view__weekdays__weekday {
       font-family: "Lexend Deca", sans-serif;
-      text-decoration: none;
       abbr {
         text-decoration: none;
       }
