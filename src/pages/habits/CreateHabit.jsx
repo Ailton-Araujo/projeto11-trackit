@@ -53,7 +53,7 @@ export default function CreateHabit({
     }
   }
   return (
-    <CreateHabitStyled data-test="habit-create-container" onSubmit={sendHabit}>
+    <CreateHabitStyled onSubmit={sendHabit}>
       <input
         data-test="habit-name-input"
         disabled={tryCreateHabit}

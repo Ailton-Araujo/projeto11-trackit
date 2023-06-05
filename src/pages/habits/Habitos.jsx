@@ -49,6 +49,7 @@ export default function Habitos() {
 
       {createHabit && (
         <CreateHabit
+          data-test="habit-create-container"
           token={token}
           setCreateHabit={setCreateHabit}
           newHabit={newHabit}
@@ -77,6 +78,7 @@ export default function Habitos() {
       ) : (
         listHabits.map((habit) => (
           <Habit
+            data-test="habit-container"
             key={habit.id}
             id={habit.id}
             token={token}

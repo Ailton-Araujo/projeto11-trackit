@@ -24,6 +24,7 @@ export default function Hoje() {
 
   useEffect(() => {
     function sucessGetHabits(data) {
+      console.log(data);
       if (data.length === 0) {
         setLoading(false);
       }
@@ -38,9 +39,10 @@ export default function Hoje() {
     <HojeStyled textcolor={totalDone !== 0}>
       <h1 data-test="today">{now}</h1>
       <h2 data-test="today-counter">
-        {userHabits.length === 0
+        {/* {userHabits.length === 0
           ? "Você não tem nenhum hábito agendado para Hoje:"
-          : habitDone !== 0
+          : */}
+        {habitDone !== 0
           ? `${Math.round(
               (habitDone / numberOfHabits.length) * 100
             )}% dos hábitos concluídos`
