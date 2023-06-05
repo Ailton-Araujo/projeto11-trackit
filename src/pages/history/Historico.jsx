@@ -6,7 +6,6 @@ import "react-calendar/dist/Calendar.css";
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-
 import { HistoryStyled } from "../../components/styled/HistoryStyled";
 import { useUserDataContext } from "../../components/ContextProvider";
 import { getHistoryHabits } from "../../components/Axios";
@@ -53,8 +52,7 @@ export default function Historico() {
         <h2>
           Segue os detalhes dos habitos de{" "}
           <span>
-            {console.log(new Date(habitsday.day).toLocaleDateString())}
-            {dayjs(new Date(habitsday.day).toLocaleDateString())
+            {dayjs(new Date(habitsday.habits[0].date))
               .locale("pt-br")
               .format(`dddd, DD/MM`)}
           </span>
@@ -74,8 +72,8 @@ export default function Historico() {
           data-test="calendar"
           onChange={onChange}
           tileClassName={({ date }) => {
-            let daysCompleted = [];
-            let daysNotCompleted = [];
+            const daysCompleted = [];
+            const daysNotCompleted = [];
 
             habitHistory.forEach(({ day, habits }) => {
               if (habits.filter((habit) => habit.done === false).length === 0) {

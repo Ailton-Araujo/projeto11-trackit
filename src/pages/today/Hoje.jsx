@@ -24,7 +24,6 @@ export default function Hoje() {
 
   useEffect(() => {
     function sucessGetHabits(data) {
-      console.log(data);
       if (data.length === 0) {
         setLoading(false);
       }
