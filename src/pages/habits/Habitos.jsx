@@ -14,14 +14,19 @@ export default function Habitos() {
   const {
     user: { token },
   } = useUserDataContext();
-  const { setNumberOfHabits } = useTotalNumberHabits();
-  const [createHabit, setCreateHabit] = useState(false);
-  const [newHabit, setNewHabit] = useState({ name: "", days: [] });
+  const { setNumberOfHabits } = useTotalNumberHabits([]);
   const [listHabits, setListHabits] = useState([]);
+  const [createHabit, setCreateHabit] = useState(false);
+  const [Loading, setLoading] = useState(true);
+  const [newHabit, setNewHabit] = useState({ name: "", days: [] });
+
   const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   useEffect(() => {
     function sucessGetHabits(data) {
+      if (data.length === 0) {
+        setLoading(false);
+      }
       setListHabits(data);
       setNumberOfHabits(
         data.filter((habit) => habit.days.includes(dayjs().day()))
@@ -53,20 +58,22 @@ export default function Habitos() {
           weekdays={weekdays}
         />
       )}
-      {listHabits === 0 && (
-        <p>
-          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
-          começar a trackear!
-        </p>
-      )}
 
       {listHabits.length === 0 ? (
-        <FallingLines
-          color="#126ba5"
-          width="100"
-          visible={true}
-          ariaLabel="falling-lines-loading"
-        />
+        <>
+          <p>
+            Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
+            começar a trackear!
+          </p>
+          {Loading && (
+            <FallingLines
+              color="#126ba5"
+              width="100"
+              visible={true}
+              ariaLabel="falling-lines-loading"
+            />
+          )}
+        </>
       ) : (
         listHabits.map((habit) => (
           <Habit
@@ -76,7 +83,9 @@ export default function Habitos() {
             name={habit.name}
             weekdays={weekdays}
             daysList={habit.days}
+            listHabits={listHabits}
             setListHabits={setListHabits}
+            setLoading={setLoading}
             setNumberOfHabits={setNumberOfHabits}
           />
         ))

@@ -2,6 +2,7 @@ import { HabitStyled } from "../../components/styled/HabitStyled";
 import { deleteHabit } from "../../components/Axios";
 import WeekDaysButtons from "../../components/WeekDaysButtons";
 import dump from "../../assets/dump.svg";
+import { useEffect } from "react";
 
 export default function Habit({
   id,
@@ -9,7 +10,9 @@ export default function Habit({
   name,
   weekdays,
   daysList,
+  listHabits,
   setListHabits,
+  setLoading,
   setNumberOfHabits,
 }) {
   function tryDeleteHabit() {
@@ -27,6 +30,12 @@ export default function Habit({
       deleteHabit(id, token, sucessDelete);
     }
   }
+
+  useEffect(() => {
+    if (listHabits.lenght === 0) {
+      setLoading(false);
+    }
+  }, [listHabits]);
 
   return (
     <HabitStyled data-test="habit-create-container">

@@ -18,11 +18,15 @@ export default function Hoje() {
   const { habitDone } = useHabitStatusContext();
   const { numberOfHabits, setNumberOfHabits } = useTotalNumberHabits();
   const [userHabits, setUserHabits] = useState([]);
+  const [Loading, setLoading] = useState(true);
   const [totalDone, setTotalDone] = useState(0);
   const now = dayjs().locale("pt-br").format("dddd, DD/MM");
 
   useEffect(() => {
     function sucessGetHabits(data) {
+      if (data.length === 0) {
+        setLoading(false);
+      }
       setUserHabits(data);
       setNumberOfHabits(data);
       setTotalDone(() => data.filter((habit) => habit.done === true).length);
@@ -44,12 +48,14 @@ export default function Hoje() {
       </h2>
 
       {userHabits.length === 0 ? (
-        <FallingLines
-          color="#126ba5"
-          width="100"
-          visible={true}
-          ariaLabel="falling-lines-loading"
-        />
+        Loading && (
+          <FallingLines
+            color="#126ba5"
+            width="100"
+            visible={true}
+            ariaLabel="falling-lines-loading"
+          />
+        )
       ) : (
         <ul>
           {userHabits.map((habit) => (

@@ -17,6 +17,7 @@ export default function Historico() {
     user: { token },
   } = useUserDataContext();
   const [habitHistory, setHabitHistory] = useState([]);
+  const [Loading, setLoading] = useState(true);
   const [daySelect, setdaySelect] = useState(false);
   const [habitsday, setHabitsDay] = useState({});
   const [value, onChange] = useState(new Date());
@@ -30,13 +31,21 @@ export default function Historico() {
     setdaySelect(true);
   }
   useEffect(() => {
-    getHistoryHabits(token, setHabitHistory);
+    function sucessGetHistory(data) {
+      if (data.length === 0) {
+        setLoading(false);
+      }
+      setHabitHistory(data);
+    }
+    getHistoryHabits(token, sucessGetHistory);
   }, []);
 
   return (
     <HistoryStyled>
       <h1>Histórico</h1>
-      {!daySelect ? (
+      {habitHistory.length === 0 ? (
+        <h2>Você ainda não criou nenhum hábito para o nosso hístorico</h2>
+      ) : !daySelect ? (
         <h2>Selecione um dia para mais detalhes:</h2>
       ) : Object.values(habitsday).length === 0 ? (
         <h2>O dia selecionado não possui nenhum habito:</h2>
@@ -52,12 +61,14 @@ export default function Historico() {
         </h2>
       )}
       {habitHistory.length === 0 ? (
-        <FallingLines
-          color="#126ba5"
-          width="100"
-          visible={true}
-          ariaLabel="falling-lines-loading"
-        />
+        Loading && (
+          <FallingLines
+            color="#126ba5"
+            width="100"
+            visible={true}
+            ariaLabel="falling-lines-loading"
+          />
+        )
       ) : Object.values(habitsday).length === 0 ? (
         <Calendar
           data-test="calendar"
@@ -101,8 +112,12 @@ export default function Historico() {
             </p>
           )}
           {habitsday.habits.map((habit) => {
-            console.log(habitsday);
-            return <Habit bg={habit.done}> {habit.name}</Habit>;
+            return (
+              <Habit key={habit.id} bg={habit.done}>
+                {" "}
+                {habit.name}
+              </Habit>
+            );
           })}
           <button
             onClick={() => {
